@@ -18,13 +18,13 @@ const { RecipeModel } = require("../models/recipeModel");
       ingredients,
       steps,
       image,
-      createdBy: req.user.id
+      createdBy: req.userId
     });
     const recipe = await newRecipe.save();
-    res.json(recipe);
+    return res.json(recipe);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    return res.status(500).send('Server error');
   }
 };
 
