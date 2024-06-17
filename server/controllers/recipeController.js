@@ -31,7 +31,7 @@ const createRecipe = async (req, res) => {
 
 // Get all recipes
 const getAllRecipes = async (req, res) => {
-  const { page = 1, limit = 5, search } = req.query;
+  const { page = 1, limit = 8, search } = req.query;
 
   try {
     let filter = {};

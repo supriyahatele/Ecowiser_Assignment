@@ -11,7 +11,7 @@ const RecipeRouter = express.Router();
 RecipeRouter.post('/createRecipe',auth,  createRecipe)
 
 // to get All Recipe
-RecipeRouter.get('/getAllRecipes',auth, getAllRecipes)
+RecipeRouter.get('/getAllRecipes', getAllRecipes)
 
 // to get All Recipe of specific user
 RecipeRouter.get('/getAllRecipe/user',auth, getAllRecipeOfUser)
