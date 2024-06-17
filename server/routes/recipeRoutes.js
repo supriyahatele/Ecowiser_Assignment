@@ -1,5 +1,5 @@
 const express = require('express');
-const { createRecipe, getAllRecipes, getRecipeById, updateRecipe, deleteRecipe } = require('../controllers/recipeController');
+const { createRecipe, getAllRecipes, getRecipeById, updateRecipe, deleteRecipe, getAllRecipeOfUser } = require('../controllers/recipeController');
 const { auth } = require('../middleware/auth');
 
 
@@ -11,16 +11,19 @@ const RecipeRouter = express.Router();
 RecipeRouter.post('/createRecipe',auth,  createRecipe)
 
 // to get All Recipe
-RecipeRouter.get('/getAllRecipe', getAllRecipes)
+RecipeRouter.get('/getAllRecipes',auth, getAllRecipes)
+
+// to get All Recipe of specific user
+RecipeRouter.get('/getAllRecipe/user',auth, getAllRecipeOfUser)
 
 // to get single Recipe by its id
-RecipeRouter.get('/getRecipeById/:id',  getRecipeById)
+RecipeRouter.get('/getRecipeById/:id',auth,  getRecipeById)
 
 // to update  Recipe
-RecipeRouter.patch('/updateRecipe/:id', updateRecipe)
+RecipeRouter.patch('/updateRecipe/:id', auth,updateRecipe)
 
 // to delete Recipe
-RecipeRouter.delete('/deleteRecipe/:id',  deleteRecipe)
+RecipeRouter.delete('/deleteRecipe/:id',auth,  deleteRecipe)
 
 
 

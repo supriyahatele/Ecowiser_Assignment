@@ -1,6 +1,6 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-// const { UserModel } = require('../models/user.model');
+
 const auth = (req, res, next) => {
     const token = req.headers.authorization?.split(" ")[1];
     if (token) {
@@ -8,8 +8,8 @@ const auth = (req, res, next) => {
             if (err) {
                 return res.status(401).json({ message:err.stack })
             } else {
-                console.log(decoded)
-                req.userId = decoded.id;
+                // console.log(decoded)
+                req.userId = decoded.userId;
                 next();
             }
         })
