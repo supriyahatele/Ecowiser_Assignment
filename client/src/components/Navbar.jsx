@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import {
   Box,
   Flex,
@@ -59,7 +58,16 @@ export default function Navbar() {
   };
 
   return (
-    <Box bg={"black"} px={4} position="sticky" top="0" zIndex="10" bottom='0'  color={"white"}>
+    <Box
+      bg={"black"}
+      px={4}
+      position="sticky"
+      top="0"
+      zIndex="10"
+      bottom='0'
+      color={"white"}
+      // border={'2px solid red'}
+    >
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         <IconButton
           size={"md"}
@@ -82,10 +90,10 @@ export default function Navbar() {
             ))}
           </HStack>
         </HStack>
-        <HStack spacing={4} alignItems={"center"}>
+        <HStack spacing={4} alignItems={"center"} display={{ base: "none", md: "flex" }}>
           {auth.isLoggedIn && (
             <>
-              <Avatar name={auth.username} size={"sm"}bgColor={'pink'} />
+              <Avatar name={auth.username} size={"sm"} bgColor={'pink'} />
               <Text fontSize={"sm"} color={"white"}>
                 Welcome, {auth.username}
               </Text>
@@ -124,6 +132,37 @@ export default function Navbar() {
                 {link.name}
               </NavLink>
             ))}
+            {auth.isLoggedIn && (
+              <>
+                <HStack spacing={4} alignItems={"center"}>
+                  <Avatar name={auth.username} size={"sm"} bgColor={'pink'} />
+                  <Text fontSize={"sm"} color={"white"}>
+                    Welcome, {auth.username}
+                  </Text>
+                </HStack>
+                <Button
+                  w='100px'
+                  // size={"sm"}
+                  bg={"crimson"}
+                  color={"white"}
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Button>
+              </>
+            )}
+            {!auth.isLoggedIn && (
+              <Button
+              w='100px'
+                size={"sm"}
+                bg={"crimson"}
+                color={"white"}
+                as={RouterLink}
+                to="/login"
+              >
+                Login
+              </Button>
+            )}
           </Stack>
         </Box>
       ) : null}

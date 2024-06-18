@@ -84,7 +84,16 @@ const Recipe = () => {
         </Box>
       </Center>
       
-      <InputGroup width='40%' margin={"auto"} mb="6"  mt="6" >
+      <InputGroup  margin={"auto"} mb="6"  mt="6"
+       width={{
+        base: "60%",
+        sm: "60%",
+        md: "40%",
+        lg: "40%",
+        xl: "30%",
+        "2xl": "30%",
+      }}
+       >
         <InputLeftElement pointerEvents="none">
           <SearchIcon color="gray.300" />
         </InputLeftElement>
