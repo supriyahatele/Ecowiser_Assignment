@@ -21,10 +21,10 @@ This web application allows users to search, view, and manage food recipes. User
 
 ## Tech Stack
 
-## Frontend
+### Frontend
 - Framework: React.js,
 - Styling: CSS, chakra-UI
-Backend
+### Backend
 - Framework: Node.js with Express.js,
 - Database: MongoDB
 
