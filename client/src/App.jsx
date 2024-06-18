@@ -16,7 +16,7 @@ import { DashBoard } from "./pages/DashBoard"
 
 const App = () => {
   return (
-    <Box>
+    <Box minHeight="100vh">
       <Navbar />
       <Routes>
         <Route path="/" element={<Recipe />} />

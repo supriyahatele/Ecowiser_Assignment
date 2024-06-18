@@ -9,6 +9,7 @@ import {
   chakra,
   useColorModeValue,
 } from '@chakra-ui/react';
+
 import { FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa';
 
 const ListHeader = ({ children }) => {
@@ -45,13 +46,11 @@ const SocialButton = ({ children, label, href }) => {
 export default function Footer() {
   return (
     <Box
-      mt="auto"
       bg="gray.100"
       color="black.600"
       width="100%"
-      position="relative"
-      bottom="0"
-      >
+      mt="auto"
+    >
       <Container as={Stack} maxW="6xl" py={10}>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
           <Stack align="flex-start">
@@ -86,7 +85,8 @@ export default function Footer() {
       <Box
         borderTopWidth={1}
         borderStyle="solid"
-        borderColor={useColorModeValue('gray.200', 'gray.700')}>
+        borderColor={useColorModeValue('gray.200', 'gray.700')}
+      >
         <Container
           as={Stack}
           maxW="6xl"
@@ -94,7 +94,8 @@ export default function Footer() {
           direction={{ base: 'column', md: 'row' }}
           spacing={4}
           justify={{ md: 'space-between' }}
-          align={{ md: 'center' }}>
+          align={{ md: 'center' }}
+        >
           <Text>© 2024 Ecowiser. All rights reserved</Text>
           <Stack direction="row" spacing={6}>
             <SocialButton label="Twitter" href="#">

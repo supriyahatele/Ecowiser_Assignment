@@ -160,34 +160,34 @@ const DashBoard = () => {
 
   return (
     <Box p={4} mb={4}>
-      {error && (
+       {error && (
         <Alert status="error" mb={4}>
           <AlertIcon />
           <AlertTitle mr={2}>Error!</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
-      <Button colorScheme="teal" mb={4} onClick={handleAdd} 
-          >Add Recipe</Button>
+      <Button colorScheme="teal" mb={4} onClick={handleAdd}>
+        Add Recipe
+      </Button>
       {loading ? (
         <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
-        <Spinner size="xl" />
-      </Box>
-      ) : (
+          <Spinner size="xl" />
+        </Box>
+      ) : recipes.length > 0 ? (
         <Grid
-        templateColumns={{
-          base: "repeat(1,1fr)",
-          sm: "repeat(2,1fr)",
-          md: "repeat(3,1fr)",
-          lg: "repeat(3,1fr)",
-          xl: "repeat(4,1fr)",
-          "2xl": "repeat(4,1fr)",
-        }}
-         gap={6}
-          width='90%'
-          margin={'auto'}
-         >
-         
+          templateColumns={{
+            base: "repeat(1, 1fr)",
+            sm: "repeat(2, 1fr)",
+            md: "repeat(3, 1fr)",
+            lg: "repeat(3, 1fr)",
+            xl: "repeat(4, 1fr)",
+            "2xl": "repeat(4, 1fr)",
+          }}
+          gap={6}
+          width="90%"
+          margin="auto"
+        >
           {recipes.map((recipe) => (
             <Box
               key={recipe._id}
@@ -198,12 +198,21 @@ const DashBoard = () => {
               flexDirection="column"
               justifyContent="space-between"
             >
-              <Image src={recipe.image} alt={recipe.title} boxSize="100%" height="200px" objectFit="cover"  borderRadius="10px"/>
+              <Image
+                src={recipe.image}
+                alt={recipe.title}
+                boxSize="100%"
+                height="200px"
+                objectFit="cover"
+                borderRadius="10px"
+              />
               <VStack align="start" mt={4} flex="1">
-                <Text fontSize="lg" fontWeight="bold">{recipe.title}</Text>
+                <Text fontSize="lg" fontWeight="bold">
+                  {recipe.title}
+                </Text>
                 <Text>{recipe.description}</Text>
                 <VStack align="start" flex="1">
-                  <Text fontweight='bold'>{ `ingredients: ${recipe.ingredients.join(", ")}`}</Text>
+                  <Text fontWeight="bold">{`Ingredients: ${recipe.ingredients.join(", ")}`}</Text>
                 </VStack>
                 <HStack mt={4}>
                   <Button colorScheme="teal" onClick={() => handleEdit(recipe)}>Edit</Button>
@@ -213,6 +222,10 @@ const DashBoard = () => {
             </Box>
           ))}
         </Grid>
+      ) : (
+        <Text fontSize="xl" textAlign="center" mt={4}>
+          No recipes yet. Create your recipes!
+        </Text>
       )}
 
       {(editRecipe !== null || newRecipe) && (
