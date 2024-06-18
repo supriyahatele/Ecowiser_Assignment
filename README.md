@@ -51,5 +51,6 @@ This web application allows users to search, view, and manage food recipes. User
  - GET /recipe//getAllRecipe/user: Get all recipes of a specific user (authenticated)
 
   ## Credentials
-
+    email : supriya@example.com
+    password : supriya
   ## screenshots
