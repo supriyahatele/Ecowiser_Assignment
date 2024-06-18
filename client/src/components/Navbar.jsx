@@ -7,15 +7,19 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
-  Text
+  Text,
+  Button,
+  Avatar
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link as RouterLink, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const Links = [
   { name: "Home", path: "/" },
-  { name: "signUp", path: "/signUp" },
-  { name: "login", path: "/login" },
+  { name: "Sign Up", path: "/signUp" },
+  { name: "DashBoard", path: "/dashBoard" },
 ];
 
 const NavLink = ({ children, to, onClick }) => {
@@ -43,59 +47,86 @@ const NavLink = ({ children, to, onClick }) => {
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  
-  return (
-    <>
-      <Box
-        bg={'blue.400'}
-        px={4}
-        position="sticky"
-        top="0"
-        zIndex="10"
-      >
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <IconButton
-            size={"md"}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={"Open Menu"}
-            display={{ md: "none" }}
-            onClick={isOpen ? onClose : onOpen}
-          />
-          <HStack spacing={8} alignItems={"center"}>
-            <Box>
-              <Text fontSize={"larger"} fontWeight={"bold"} color={"black"} >Ecowiser</Text>
-            </Box>
-            <HStack
-              as={"nav"}
-              spacing={4}
-              display={{ base: "none", md: "flex" }}
-            >
-              {Links.map((link) => (
-                <NavLink
-                  key={link.name}
-                  to={link.path}
-                  // onClick={link.name === "Product" ? handleProductsClick : null}
-                >
-                  {link.name}
-                </NavLink>
-              ))}
-            </HStack>
-          </HStack>
-          
-        </Flex>
+  const { auth, handleLogout } = useContext(AuthContext);
 
-        {isOpen ? (
-          <Box pb={4} display={{ md: "none" }}>
-            <Stack as={"nav"} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link.name} to={link.path}>
-                  {link.name}
-                </NavLink>
-              ))}
-            </Stack>
+  const getUserInitials = (name) => {
+    const initials = name
+      .split(' ')
+      .map((word) => word.charAt(0))
+      .join('')
+      .toUpperCase();
+    return initials;
+  };
+
+  return (
+    <Box bg={"black"} px={4} position="sticky" top="0" zIndex="10" bottom='0'  color={"white"}>
+      <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+        <IconButton
+          size={"md"}
+          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+          aria-label={"Open Menu"}
+          display={{ md: "none" }}
+          onClick={isOpen ? onClose : onOpen}
+        />
+        <HStack spacing={8} alignItems={"center"}>
+          <Box>
+            <Text fontSize={"larger"} fontWeight={"bold"} color={"white"}>
+              Ecowiser
+            </Text>
           </Box>
-        ) : null}
-      </Box>
-    </>
+          <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
+            {Links.map((link) => (
+              <NavLink key={link.name} to={link.path}>
+                {link.name}
+              </NavLink>
+            ))}
+          </HStack>
+        </HStack>
+        <HStack spacing={4} alignItems={"center"}>
+          {auth.isLoggedIn && (
+            <>
+              <Avatar name={auth.username} size={"sm"}bgColor={'pink'} />
+              <Text fontSize={"sm"} color={"white"}>
+                Welcome, {auth.username}
+              </Text>
+            </>
+          )}
+          <Box>
+            {auth.isLoggedIn ? (
+              <Button
+                size={"sm"}
+                bg={"crimson"}
+                color={"white"}
+                onClick={handleLogout}
+              >
+                Logout
+              </Button>
+            ) : (
+              <Button
+                size={"sm"}
+                bg={"crimson"}
+                color={"white"}
+                as={RouterLink}
+                to="/login"
+              >
+                Login
+              </Button>
+            )}
+          </Box>
+        </HStack>
+      </Flex>
+
+      {isOpen ? (
+        <Box pb={4} display={{ md: "none" }}>
+          <Stack as={"nav"} spacing={4}>
+            {Links.map((link) => (
+              <NavLink key={link.name} to={link.path}>
+                {link.name}
+              </NavLink>
+            ))}
+          </Stack>
+        </Box>
+      ) : null}
+    </Box>
   );
 }

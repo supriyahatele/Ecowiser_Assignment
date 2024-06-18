@@ -140,6 +140,7 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { Box, Button, Text } from "@chakra-ui/react";
 import { AuthContext } from "../context/AuthContext";
+import { BASE_URL } from "../utils/vars";
 
 const Login = () => {
   const { handleLogin } = useContext(AuthContext);
@@ -162,11 +163,13 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/user/login", formdata);
-      const token = response.data.token; // Corrected extraction of token
-      console.log(token)
+      // http://localhost:8080    ${BASE_URL}
+      const response = await axios.post(` ${BASE_URL}/user/login`, formdata);
+      const token = response.data.token; 
+      const username = response.data.username; // Corrected extraction of token
+      console.log(response.data)
       // Assuming handleLogin sets auth.token and auth.isLoggedIn in context
-      handleLogin(token);
+      handleLogin(token,username);
       setFormdata(initState);
   
       // Check if authentication was successful

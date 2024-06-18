@@ -1,1 +1,1 @@
-export const BASE_URL = import.meta.env.VITE_BASE_URL;
+export const BASE_URL = 'https://ecowiser-backend-1.onrender.com'

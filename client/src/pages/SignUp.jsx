@@ -202,6 +202,7 @@ import './login.css';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { Box, Button,Text } from '@chakra-ui/react';
+import { BASE_URL } from '../utils/vars';
 const SignUp = () => {
 const navigate=useNavigate()
   const initState = {
@@ -224,7 +225,7 @@ const navigate=useNavigate()
   const handleSubmit = async(e) => {
     e.preventDefault();
     try{
-      const response = await axios.post("http://localhost:8080/user/register", formData);
+      const response = await axios.post(`${BASE_URL}/user/register`, formData);
       console.log(response.data)
     navigate('/login');
     setFormData(initState);
