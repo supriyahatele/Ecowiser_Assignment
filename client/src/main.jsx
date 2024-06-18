@@ -12,6 +12,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthContextProvider>
     <App />
   </AuthContextProvider>
-  </ChakraProvider>,
+  </ChakraProvider>
   </BrowserRouter>
 )
