@@ -33,10 +33,6 @@ This web application allows users to search, view, and manage food recipes. User
 - Authentication: JWT (JSON Web Tokens),
 - API Testing: Postman,
 
-## Folder Structure
- 
-
-
 ## API Endpoints
  ### Authentication
  - POST /user/register: User signup
@@ -53,4 +49,4 @@ This web application allows users to search, view, and manage food recipes. User
   ## Credentials
     email : supriya@example.com
     password : supriya
-  ## screenshots
+
